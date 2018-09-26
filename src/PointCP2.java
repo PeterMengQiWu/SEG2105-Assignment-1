@@ -1,5 +1,5 @@
 
-public class PointCP2 extends PointCP{
+public class PointCP2 extends PointCP implements Point{
 	//Instance variables ************************************************
 
 	/**

@@ -1,5 +1,5 @@
 
-public class PointCP2 implements PointCP6{
+public class PointCP3 implements PointCP6{
 	//Instance variables ************************************************
 
 	/**
@@ -9,16 +9,16 @@ public class PointCP2 implements PointCP6{
 	private char typeCoord;
 
 	/**
-	 * Contains the current value of RHO depending on the type
+	 * Contains the current value of X depending on the type
 	 * of coordinates.
 	 */
-	private double rho;
+	private double x;
 
 	/**
-	 * Contains the current value of THETA value depending on the
+	 * Contains the current value of Y value depending on the
 	 * type of coordinates.
 	 */
-	private double theta;
+	private double y;
 
 
 	//Constructors ******************************************************
@@ -26,37 +26,37 @@ public class PointCP2 implements PointCP6{
 	/**
 	 * Constructs a coordinate object, with a type identifier.
 	 */
-	public PointCP2(char type, double rho, double theta)
+	public PointCP3(char type, double x, double y)
 	{
 		if(type != 'C' && type != 'P')
 			throw new IllegalArgumentException();
-		this.rho = rho;
-		this.theta = theta;
-		if(type == 'C') {
-			rho = Math.sqrt(Math.pow(rho, 2) + Math.pow(theta, 2));
-			theta = Math.toDegrees(Math.atan2(theta, rho));
+		this.x = x;
+		this.y = y;
+		if(type == 'P') {
+			x = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+			y = Math.toDegrees(Math.atan2(y, x));
 		}
 		typeCoord = type;	
 	}
 
 	public double getX()
 	{
-		return (Math.cos(Math.toRadians(theta)) * rho);
+		return x;
 	}
 
 	public double getY()
 	{
-		return (Math.sin(Math.toRadians(theta)) * rho);
+		return y;
 	}
 
 	public double getRho()
 	{
-		return rho;
+		return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 	}
 
 	public double getTheta()
 	{
-		return theta;
+		return Math.toDegrees(Math.atan2(y, x));
 	}
 
 	/**
@@ -65,14 +65,15 @@ public class PointCP2 implements PointCP6{
 	public PointCP2 convertStorageToPolar()
 	{
 		typeCoord = 'P';  //Change coord type identifier
-		return new PointCP2(typeCoord, rho, theta);
+		return new PointCP2(typeCoord, getRho(), getTheta());
 	}
 
 	/**
 	 * Converts Polar coordinates to Cartesian coordinates.
 	 */
 	public PointCP3 convertStorageToCartesian() {
-		return new PointCP3(typeCoord, getX(), getY());
+		typeCoord = 'C'; //Change coord type identifier
+		return new PointCP3(typeCoord, x, y);
 	}
 
 	/**
@@ -87,8 +88,8 @@ public class PointCP2 implements PointCP6{
 	{
 		// Obtain differences in X and Y, sign is not important as these values
 		// will be squared later.
-		double deltaX = getX() - pointB.getX();
-		double deltaY = getY() - pointB.getY();
+		double deltaX = x - pointB.getX();
+		double deltaY = y - pointB.getY();
 
 		return Math.sqrt((Math.pow(deltaX, 2) + Math.pow(deltaY, 2)));
 	}
@@ -104,10 +105,10 @@ public class PointCP2 implements PointCP6{
 	public PointCP6 rotatePoint(double rotation)
 	{
 		double radRotation = Math.toRadians(rotation);
-		double X = getX();
-		double Y = getY();
+		double X = x;
+		double Y = y;
 
-		return new PointCP2('C',
+		return new PointCP3('C',
 				(Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
 				(Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y));
 	}
@@ -120,8 +121,8 @@ public class PointCP2 implements PointCP6{
 	public String toString()
 	{
 		return "Stored as " + (typeCoord == 'C' 
-				? "Cartesian  (" + getX() + "," + getY() + ")"
-						: "Polar [" + rho + "," + theta + "]") + "\n";
+				? "Cartesian  (" + x + "," + y + ")"
+						: "Polar [" + getRho() + "," + getTheta() + "]") + "\n";
 	}
 
 }

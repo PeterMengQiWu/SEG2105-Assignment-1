@@ -16,23 +16,27 @@ public class PerformanceComparison {
 		final int NUMBER_OF_TESTS = 3;
 		double sum = 0;
 		
+		//Array Construction Test
 		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
 			sum += ArrayTest();
 		}
 		System.out.println("Array test time: " + sum/NUMBER_OF_TESTS);
 		
+		//Vector Construction Test
 		sum = 0;
 		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
 			sum += VectorTest();
 		}
 		System.out.println("Vector test time: " + sum/NUMBER_OF_TESTS);
 
+		//ArrayList Construction Test
 		sum = 0;
 		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
 			sum += ArrayListTest();
 		}
 		System.out.println("ArrayList test time: " + sum/NUMBER_OF_TESTS);
 		
+		//Vector Construction Test with size predefined
 		vector = new Vector<Integer>(SIZE);
 		sum = 0;
 		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
@@ -40,6 +44,7 @@ public class PerformanceComparison {
 		}
 		System.out.println("Vector test time with size declared: " + sum/NUMBER_OF_TESTS);
 		
+		//ArrayList Construction Test with size predefined
 		list = new ArrayList<Integer>(SIZE);
 		sum = 0;
 		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
@@ -47,25 +52,37 @@ public class PerformanceComparison {
 		}
 		System.out.println("ArrayList test time with size declared: " + sum/NUMBER_OF_TESTS);
 		
+		//Array Sum Test
 		sum = 0;
 		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
+			sum += ArrayTest();
 			sum += ArraySumTest();
 		}
 		System.out.println("Array sum test time: " + sum/NUMBER_OF_TESTS);
 		
+		//Vector Sum Test
 		sum = 0;
+		vector = new Vector<Integer>();
 		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
+			sum += VectorTest();
 			sum += VectorSumTest();
 		}
 		System.out.println("Vector sum test time: " + sum/NUMBER_OF_TESTS);
 		
+		//ArrayList Sum Test
 		sum = 0;
+		list = new ArrayList<Integer>();
 		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
+			sum += ArrayListTest();
 			sum += ArrayListSumTest();
 		}
 		System.out.println("ArrayList sum test time: " + sum/NUMBER_OF_TESTS);
 	}
 	
+	/**
+	 * Constructs the array and assigns random numbers from 0 to 9 to the array
+	 * @return running time of this method
+	 */
 	public static double ArrayTest() {
 		startTime = System.nanoTime();
 		for(int i = 0; i < SIZE; i++) {
@@ -75,6 +92,10 @@ public class PerformanceComparison {
 		return (double)(endTime-startTime)/1000000000.0;
 	}
 	
+	/**
+	 * Constructs the Vector and assigns random numbers from 0 to 9 to the Vector
+	 * @return running time of this method
+	 */
 	public static double VectorTest() {
 		startTime = System.nanoTime();
 		for(int i = 0; i < SIZE; i++) {
@@ -84,6 +105,10 @@ public class PerformanceComparison {
 		return (double)(endTime-startTime)/1000000000.0;
 	}
 	
+	/**
+	 * Constructs the ArrayList and assigns random numbers from 0 to 9 to the ArrayList
+	 * @return running time of this method
+	 */
 	public static double ArrayListTest() {
 		startTime = System.nanoTime();
 		for(int i = 0; i < SIZE; i++) {
@@ -93,6 +118,10 @@ public class PerformanceComparison {
 		return (double)(endTime-startTime)/1000000000.0;
 	}
 	
+	/**
+	 * Constructs the array, assigns random numbers from 0 to 9 to the array and adds all entries
+	 * @return running time of this method
+	 */
 	public static double ArraySumTest() {
 		int sum = 0;
 		startTime = System.nanoTime();
@@ -103,6 +132,10 @@ public class PerformanceComparison {
 		return (double)(endTime-startTime)/1000000000.0;
 	}
 	
+	/**
+	 * Constructs the Vector, assigns random numbers from 0 to 9 to the Vector and adds all entries
+	 * @return running time of this method
+	 */
 	public static double VectorSumTest() {
 		int sum = 0;
 		Iterator<Integer> it = vector.iterator();
@@ -114,6 +147,10 @@ public class PerformanceComparison {
 		return (double)(endTime-startTime)/1000000000.0;
 	}
 	
+	/**
+	 * Constructs the ArrayList, assigns random numbers from 0 to 9 to the ArrayList and adds all entries
+	 * @return running time of this method
+	 */
 	public static double ArrayListSumTest() {
 		int sum = 0;
 		Iterator<Integer> it = list.iterator();

@@ -1,13 +1,6 @@
 
 public class PointCP3 implements PointCP6{
 	//Instance variables ************************************************
-
-	/**
-	 * Contains C(artesian) or P(olar) to identify the type of
-	 * coordinates that are being dealt with.
-	 */
-	private char typeCoord;
-
 	/**
 	 * Contains the current value of X depending on the type
 	 * of coordinates.
@@ -35,8 +28,7 @@ public class PointCP3 implements PointCP6{
 		if(type == 'P') {
 			x = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 			y = Math.toDegrees(Math.atan2(y, x));
-		}
-		typeCoord = type;	
+		}	
 	}
 
 	public double getX()
@@ -64,16 +56,14 @@ public class PointCP3 implements PointCP6{
 	 */
 	public PointCP2 convertStorageToPolar()
 	{
-		typeCoord = 'P';  //Change coord type identifier
-		return new PointCP2(typeCoord, getRho(), getTheta());
+		return new PointCP2('P', getRho(), getTheta());
 	}
 
 	/**
 	 * Converts Polar coordinates to Cartesian coordinates.
 	 */
 	public PointCP3 convertStorageToCartesian() {
-		typeCoord = 'C'; //Change coord type identifier
-		return new PointCP3(typeCoord, x, y);
+		return new PointCP3('C', x, y);
 	}
 
 	/**
@@ -120,9 +110,7 @@ public class PointCP3 implements PointCP6{
 	 */
 	public String toString()
 	{
-		return "Stored as " + (typeCoord == 'C' 
-				? "Cartesian  (" + x + "," + y + ")"
-						: "Polar [" + getRho() + "," + getTheta() + "]") + "\n";
+		return "Stored as " + "Cartesian  (" + x + "," + y + ")" + "\n";
 	}
 
 }

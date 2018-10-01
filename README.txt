@@ -28,6 +28,8 @@ Design 6 rotatePoint() method time: 0.4116228218497454
 Total Running Time: 12.28627359                                                                                         
 Total Memory Used: 241696768 
 
+we run the test with 2000000 instances for 20 calls for each 10 times times.
+for each running time methods we initiated 20 calls of random variables then updates the maximum as well as minimum runtimes.
 
 Design 3 takes more times to run than design 2 since it takes java to initiate Math class which results in longer runtime.
 

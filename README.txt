@@ -28,9 +28,17 @@ Design 6 rotatePoint() method time: 0.4116228218497454
 Total Running Time: 12.28627359                                                                                         
 Total Memory Used: 241696768 
 
+
+Design 3 takes more times to run than design 2 since it takes java to initiate Math class which results in longer runtime.
+
+With design 6 user can use as both design 2 and 3 one at a time which make user can decide between and don't force them to have only one option.
+the Disadvatages of Design 6 is an interface so you have to implements and modify other class to fit and keep the system run as usual. 
+
 After we do the test, It's easy conclude that by an instance of Design 6 you can create design 2 or 3 for proficiency Or either design 2 or 3 for time efficiency.
 depend on the purpose of users we can determine which design we should go for. since with design 6 we dont need to create conversion between Polar and Cartesian.
-the Disadvatages of Design 6 is an interface so you have to implements and modify other class to fit and keep the system run as usual.
+
+
+
 
 
 

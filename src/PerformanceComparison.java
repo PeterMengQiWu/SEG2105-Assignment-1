@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public class PerformanceComparison {
 	
-	private static final int SIZE = 100000;
+	private static final int SIZE = 100000000;
 	private static ArrayList<Integer> list = new ArrayList<Integer>();
 	private static Vector<Integer> vector = new Vector<Integer>();
 	private static int[] array = new int[SIZE];
@@ -13,7 +13,7 @@ public class PerformanceComparison {
 	
 	public static void main(String[] args) {
 		
-		final int NUMBER_OF_TESTS = 3000;
+		final int NUMBER_OF_TESTS = 3;
 		double sum = 0;
 		
 		//Array Construction Test
@@ -54,15 +54,15 @@ public class PerformanceComparison {
 		
 		//Array Sum Test
 		sum = 0;
+		ArrayTest();
 		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
-			sum += ArrayTest();
 			sum += ArraySumTest();
 		}
 		System.out.println("Array sum test time on average of " + NUMBER_OF_TESTS + " tests: " + sum/NUMBER_OF_TESTS + " seconds.");
 		
 		//Vector Sum Test
 		sum = 0;
-		vector = new Vector<Integer>(SIZE);
+		vector = new Vector<Integer>();
 		VectorTest();
 		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
 			sum += VectorSumTest();
@@ -72,11 +72,30 @@ public class PerformanceComparison {
 		//ArrayList Sum Test
 		sum = 0;
 		ArrayListTest();
-		list = new ArrayList<Integer>(SIZE);
+		list = new ArrayList<Integer>();
 		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
 			sum += ArrayListSumTest();
 		}
 		System.out.println("ArrayList sum test time on average of " + NUMBER_OF_TESTS + " tests: " + sum/NUMBER_OF_TESTS + " seconds.");
+
+		
+		//Vector Sum with size declared Test
+		sum = 0;
+		vector = new Vector<Integer>(SIZE);
+		VectorTest();
+		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
+			sum += VectorSumTest();
+		}
+		System.out.println("Vector sum with size declared test time on average of " + NUMBER_OF_TESTS + " tests: " + sum/NUMBER_OF_TESTS + " seconds.");
+		
+		//ArrayList Sum with size declared Test
+		sum = 0;
+		ArrayListTest();
+		list = new ArrayList<Integer>(SIZE);
+		for(int i = 0; i < NUMBER_OF_TESTS; i++) {
+			sum += ArrayListSumTest();
+		}
+		System.out.println("ArrayList sum with size declared test time on average of " + NUMBER_OF_TESTS + " tests: " + sum/NUMBER_OF_TESTS + " seconds.");
 	}
 	
 	/**

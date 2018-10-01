@@ -4,8 +4,8 @@ import java.text.DecimalFormat;
 public class PointCPEvaluation {
 
 	private static final char[] TYPE = {'P', 'C'};
-	private static final int NUMBER_OF_INSTANCES = 100000000;
-	private static final int NUMBER_OF_CALLS = 20000;
+	private static final int NUMBER_OF_INSTANCES = 200000;
+	private static final int NUMBER_OF_CALLS = 20;
 	private static final int NUMBER_OF_TESTS = 10;
 	private static final int NUMBER_OF_METHODS = 8;
 	private static final String[] METHODS = {"getX()", "getY()", "getRho()", "getTheta()", "convertStorageToPolar()", "convertStorageToCartesian()", "getDistance()", "rotatePoint()"};
@@ -35,7 +35,7 @@ public class PointCPEvaluation {
 		DecimalFormat df = new DecimalFormat("#.####");
 		df.setRoundingMode(RoundingMode.CEILING);
 
-		long startTime = System.nanoTime();
+		
 		for(int i = 0; i < NUMBER_OF_INSTANCES; i++) {
 			char type = TYPE[(int)(Math.random()*(2))];
 			int design = (int)Math.random()*((3-2)+1)+2;
@@ -53,265 +53,354 @@ public class PointCPEvaluation {
 			else {
 				pointCP6[i] = PointCPConstruction(design, type, x, y);
 			}
+		}
 			
-			
+		long startTime = System.nanoTime();
+		for(int i = 0; i < NUMBER_OF_INSTANCES; i++) {
 			for(int j = 0; j < NUMBER_OF_TESTS; j++) {
 				methodTimeD2 += TestGetX(pointCP2[i]);
-				methodTimeD3 += TestGetX(pointCP3[i]);
-				methodTimeD6 += TestGetX(pointCP6[i]);
 				runningTimeD2[0] += methodTimeD2;
-				runningTimeD3[0] += methodTimeD3;
-				runningTimeD6[0] += methodTimeD6;
 				
 				if(minRunningTimeD2[0] > methodTimeD2) {
 					minRunningTimeD2[0] = methodTimeD2;
-				}
-				
-				if(minRunningTimeD3[0] > methodTimeD3) {
-					minRunningTimeD3[0] = methodTimeD3;
-				}
-				
-				if(minRunningTimeD6[0] > methodTimeD6) {
-					minRunningTimeD6[0] = methodTimeD6;
 				}
 				
 				if(maxRunningTimeD2[0] < methodTimeD2) {
 					maxRunningTimeD2[0] = methodTimeD2;
 				}
 				
-				if(maxRunningTimeD3[0] < methodTimeD2) {
-					maxRunningTimeD3[0] = methodTimeD2;
-				}
+				methodTimeD2 = 0;
 				
-				if(maxRunningTimeD6[0] < methodTimeD6) {
-					maxRunningTimeD6[0] = methodTimeD6;
-				}
-	
-				methodTimeD2 = methodTimeD3 = methodTimeD6 = 0;
-	
 				methodTimeD2 += TestGetY(pointCP2[i]);
-				methodTimeD3 += TestGetY(pointCP3[i]);
-				methodTimeD6 += TestGetY(pointCP6[i]);
 				runningTimeD2[1] += methodTimeD2;
-				runningTimeD3[1] += methodTimeD3;
-				runningTimeD6[1] += methodTimeD6;
 				
 				if(minRunningTimeD2[1] > methodTimeD2) {
 					minRunningTimeD2[1] = methodTimeD2;
-				}
-				
-				if(minRunningTimeD3[1] > methodTimeD3) {
-					minRunningTimeD3[1] = methodTimeD3;
-				}
-				
-				if(minRunningTimeD6[1] > methodTimeD6) {
-					minRunningTimeD6[1] = methodTimeD6;
 				}
 				
 				if(maxRunningTimeD2[1] < methodTimeD2) {
 					maxRunningTimeD2[1] = methodTimeD2;
 				}
 				
-				if(maxRunningTimeD3[1] < methodTimeD2) {
-					maxRunningTimeD3[1] = methodTimeD2;
-				}
+				methodTimeD2 = 0;
 				
-				if(maxRunningTimeD6[1] < methodTimeD6) {
-					maxRunningTimeD6[1] = methodTimeD6;
-				}
-				
-				methodTimeD2 = methodTimeD3 = methodTimeD6 = 0;
-	
 				methodTimeD2 += TestGetRho(pointCP2[i]);
-				methodTimeD3 += TestGetRho(pointCP3[i]);
-				methodTimeD6 += TestGetRho(pointCP6[i]);
-	
 				runningTimeD2[2] += methodTimeD2;
-				runningTimeD3[2] += methodTimeD3;
-				runningTimeD6[2] += methodTimeD6;
 				
 				if(minRunningTimeD2[2] > methodTimeD2) {
 					minRunningTimeD2[2] = methodTimeD2;
-				}
-				
-				if(minRunningTimeD3[2] > methodTimeD3) {
-					minRunningTimeD3[2] = methodTimeD3;
-				}
-				
-				if(minRunningTimeD6[2] > methodTimeD6) {
-					minRunningTimeD6[2] = methodTimeD6;
 				}
 				
 				if(maxRunningTimeD2[2] < methodTimeD2) {
 					maxRunningTimeD2[2] = methodTimeD2;
 				}
 				
-				if(maxRunningTimeD3[2] < methodTimeD2) {
-					maxRunningTimeD3[2] = methodTimeD2;
-				}
+				methodTimeD2 = 0;
 				
-				if(maxRunningTimeD6[2] < methodTimeD6) {
-					maxRunningTimeD6[2] = methodTimeD6;
-				}
-				
-				methodTimeD2 = methodTimeD3 = methodTimeD6 = 0;
-	
 				methodTimeD2 += TestGetTheta(pointCP2[i]);
-				methodTimeD3 += TestGetTheta(pointCP3[i]);
-				methodTimeD6 += TestGetTheta(pointCP6[i]);
-	
 				runningTimeD2[3] += methodTimeD2;
-				runningTimeD3[3] += methodTimeD3;
-				runningTimeD6[3] += methodTimeD6;
 				
 				if(minRunningTimeD2[3] > methodTimeD2) {
 					minRunningTimeD2[3] = methodTimeD2;
-				}
-				
-				if(minRunningTimeD3[3] > methodTimeD3) {
-					minRunningTimeD3[3] = methodTimeD3;
-				}
-				
-				if(minRunningTimeD6[3] > methodTimeD6) {
-					minRunningTimeD6[3] = methodTimeD6;
 				}
 				
 				if(maxRunningTimeD2[3] < methodTimeD2) {
 					maxRunningTimeD2[3] = methodTimeD2;
 				}
 				
-				if(maxRunningTimeD3[3] < methodTimeD2) {
-					maxRunningTimeD3[3] = methodTimeD2;
-				}
-				
-				if(maxRunningTimeD6[3] < methodTimeD6) {
-					maxRunningTimeD6[3] = methodTimeD6;
-				}
-				
-				methodTimeD2 = methodTimeD3 = methodTimeD6 = 0;
+				methodTimeD2 = 0;
 				
 				methodTimeD2 += TestConvertStorageToPolar(pointCP2[i]);
-				methodTimeD3 += TestConvertStorageToPolar(pointCP3[i]);
-				methodTimeD6 += TestConvertStorageToPolar(pointCP6[i]);
-	
 				runningTimeD2[4] += methodTimeD2;
-				runningTimeD3[4] += methodTimeD3;
-				runningTimeD6[4] += methodTimeD6;
 				
 				if(minRunningTimeD2[4] > methodTimeD2) {
 					minRunningTimeD2[4] = methodTimeD2;
-				}
-				
-				if(minRunningTimeD3[4] > methodTimeD3) {
-					minRunningTimeD3[4] = methodTimeD3;
-				}
-				
-				if(minRunningTimeD6[4] > methodTimeD6) {
-					minRunningTimeD6[4] = methodTimeD6;
 				}
 				
 				if(maxRunningTimeD2[4] < methodTimeD2) {
 					maxRunningTimeD2[4] = methodTimeD2;
 				}
 				
-				if(maxRunningTimeD3[4] < methodTimeD2) {
-					maxRunningTimeD3[4] = methodTimeD2;
-				}
-				
-				if(maxRunningTimeD6[4] < methodTimeD6) {
-					maxRunningTimeD6[4] = methodTimeD6;
-				}
-				
-				methodTimeD2 = methodTimeD3 = methodTimeD6 = 0;
+				methodTimeD2 = 0;
 				
 				methodTimeD2 += TestConvertStorageToCartesian(pointCP2[i]);
-				methodTimeD3 += TestConvertStorageToCartesian(pointCP3[i]);
-				methodTimeD6 += TestConvertStorageToCartesian(pointCP6[i]);
-	
 				runningTimeD2[5] += methodTimeD2;
-				runningTimeD3[5] += methodTimeD3;
-				runningTimeD6[5] += methodTimeD6;
 				
 				if(minRunningTimeD2[5] > methodTimeD2) {
 					minRunningTimeD2[5] = methodTimeD2;
-				}
-				
-				if(minRunningTimeD3[5] > methodTimeD3) {
-					minRunningTimeD3[5] = methodTimeD3;
-				}
-				
-				if(minRunningTimeD6[5] > methodTimeD6) {
-					minRunningTimeD6[5] = methodTimeD6;
 				}
 				
 				if(maxRunningTimeD2[5] < methodTimeD2) {
 					maxRunningTimeD2[5] = methodTimeD2;
 				}
 				
-				if(maxRunningTimeD3[5] < methodTimeD2) {
-					maxRunningTimeD3[5] = methodTimeD2;
-				}
+				methodTimeD2 = 0;
 				
-				if(maxRunningTimeD6[5] < methodTimeD6) {
-					maxRunningTimeD6[5] = methodTimeD6;
-				}
-				
-				methodTimeD2 = methodTimeD3 = methodTimeD6 = 0;
-	
 				if(i == 0) {
 					methodTimeD2 += TestGetDistance(pointCP2[i], PointCPConstruction(2, 'P', Math.random()*((90-0)+1), Math.random()*((90-0)+1)));
-					methodTimeD3 += TestGetDistance(pointCP3[i], PointCPConstruction(3, 'C', Double.parseDouble(df.format(Math.random()*((9-0)+1))), Double.parseDouble(df.format(Math.random()*((9-0)+1)))));
-					methodTimeD6 += TestGetDistance(pointCP6[i], pointCP6[i] instanceof PointCP2 ?  PointCPConstruction(2, 'P', Math.random()*((90-0)+1), Math.random()*((90-0)+1)) : PointCPConstruction(3, 'C', Double.parseDouble(df.format(Math.random()*((9-0)+1))), Double.parseDouble(df.format(Math.random()*((9-0)+1)))));
 				}
 				else {
 					methodTimeD2 += TestGetDistance(pointCP2[i], pointCP2[i-1]);
-					methodTimeD3 += TestGetDistance(pointCP3[i], pointCP3[i-1]);
-					methodTimeD6 += TestGetDistance(pointCP6[i], pointCP6[i-1]);
 				}
 				runningTimeD2[6] += methodTimeD2;
-				runningTimeD3[6] += methodTimeD3;
-				runningTimeD6[6] += methodTimeD6;
 				
 				if(minRunningTimeD2[6] > methodTimeD2) {
 					minRunningTimeD2[6] = methodTimeD2;
-				}
-				
-				if(minRunningTimeD3[6] > methodTimeD3) {
-					minRunningTimeD3[6] = methodTimeD3;
-				}
-				
-				if(minRunningTimeD6[6] > methodTimeD6) {
-					minRunningTimeD6[6] = methodTimeD6;
 				}
 				
 				if(maxRunningTimeD2[6] < methodTimeD2) {
 					maxRunningTimeD2[6] = methodTimeD2;
 				}
 				
-				if(maxRunningTimeD3[6] < methodTimeD2) {
-					maxRunningTimeD3[6] = methodTimeD2;
+				methodTimeD2 = 0;
+				
+				methodTimeD2 += TestRotatePoint(pointCP2[i], Math.random()*((360-0)+1));
+				runningTimeD2[7] += methodTimeD2;
+				
+				if(minRunningTimeD2[7] > methodTimeD2) {
+					minRunningTimeD2[7] = methodTimeD2;
+				}
+				
+				if(maxRunningTimeD2[7] < methodTimeD2) {
+					maxRunningTimeD2[7] = methodTimeD2;
+				}
+			}
+		}
+		long endTime = System.nanoTime();
+		System.out.println("Design 2 test running time: " + (double)(endTime-startTime)/1000000000.0);
+		
+		startTime = System.nanoTime();
+		for(int i = 0; i < NUMBER_OF_INSTANCES; i++) {
+			for(int j = 0; j < NUMBER_OF_TESTS; j++) {
+				methodTimeD3 += TestGetX(pointCP2[i]);
+				runningTimeD2[0] += methodTimeD3;
+				
+				if(minRunningTimeD2[0] > methodTimeD3) {
+					minRunningTimeD3[0] = methodTimeD3;
+				}
+				
+				if(maxRunningTimeD3[0] < methodTimeD3) {
+					maxRunningTimeD3[0] = methodTimeD3;
+				}
+				
+				methodTimeD3 = 0;
+				
+				methodTimeD3 += TestGetY(pointCP2[i]);
+				runningTimeD3[1] += methodTimeD3;
+				
+				if(minRunningTimeD3[1] > methodTimeD3) {
+					minRunningTimeD3[1] = methodTimeD3;
+				}
+				
+				if(maxRunningTimeD3[1] < methodTimeD3) {
+					maxRunningTimeD3[1] = methodTimeD3;
+				}
+				
+				methodTimeD3 = 0;
+				
+				methodTimeD3 += TestGetRho(pointCP2[i]);
+				runningTimeD3[2] += methodTimeD3;
+				
+				if(minRunningTimeD3[2] > methodTimeD3) {
+					minRunningTimeD3[2] = methodTimeD3;
+				}
+				
+				if(maxRunningTimeD3[2] < methodTimeD3) {
+					maxRunningTimeD3[2] = methodTimeD3;
+				}
+				
+				methodTimeD3 = 0;
+				
+				methodTimeD3 += TestGetTheta(pointCP2[i]);
+				runningTimeD3[3] += methodTimeD3;
+				
+				if(minRunningTimeD3[3] > methodTimeD3) {
+					minRunningTimeD3[3] = methodTimeD3;
+				}
+				
+				if(maxRunningTimeD3[3] < methodTimeD3) {
+					maxRunningTimeD3[3] = methodTimeD3;
+				}
+				
+				methodTimeD3 = 0;
+				
+				methodTimeD3 += TestConvertStorageToPolar(pointCP2[i]);
+				runningTimeD3[4] += methodTimeD3;
+				
+				if(minRunningTimeD3[4] > methodTimeD3) {
+					minRunningTimeD3[4] = methodTimeD3;
+				}
+				
+				if(maxRunningTimeD3[4] < methodTimeD3) {
+					maxRunningTimeD3[4] = methodTimeD3;
+				}
+				
+				methodTimeD3 = 0;
+				
+				methodTimeD3 += TestConvertStorageToCartesian(pointCP2[i]);
+				runningTimeD3[5] += methodTimeD3;
+				
+				if(minRunningTimeD3[5] > methodTimeD3) {
+					minRunningTimeD3[5] = methodTimeD3;
+				}
+				
+				if(maxRunningTimeD3[5] < methodTimeD3) {
+					maxRunningTimeD3[5] = methodTimeD3;
+				}
+				
+				methodTimeD3 = 0;
+				
+				if(i == 0) {
+					methodTimeD3 += TestGetDistance(pointCP2[i], PointCPConstruction(2, 'P', Math.random()*((90-0)+1), Math.random()*((90-0)+1)));
+				}
+				else {
+					methodTimeD3 += TestGetDistance(pointCP2[i], pointCP2[i-1]);
+				}
+				runningTimeD3[6] += methodTimeD3;
+				
+				if(minRunningTimeD3[6] > methodTimeD3) {
+					minRunningTimeD3[6] = methodTimeD3;
+				}
+				
+				if(maxRunningTimeD3[6] < methodTimeD3) {
+					maxRunningTimeD3[6] = methodTimeD3;
+				}
+				
+				methodTimeD3 = 0;
+				
+				methodTimeD3 += TestRotatePoint(pointCP2[i], Math.random()*((360-0)+1));
+				runningTimeD3[7] += methodTimeD3;
+				
+				if(minRunningTimeD3[7] > methodTimeD3) {
+					minRunningTimeD3[7] = methodTimeD3;
+				}
+				
+				if(maxRunningTimeD3[7] < methodTimeD3) {
+					maxRunningTimeD3[7] = methodTimeD3;
+				}
+			}
+		}
+		endTime = System.nanoTime();
+		System.out.println("Design 3 test running time: " + (double)(endTime-startTime)/1000000000.0);
+
+		startTime = System.nanoTime();
+		for(int i = 0; i < NUMBER_OF_INSTANCES; i++) {
+			for(int j = 0; j < NUMBER_OF_TESTS; j++) {
+				methodTimeD2 += TestGetX(pointCP2[i]);
+				runningTimeD2[0] += methodTimeD6;
+				
+				if(minRunningTimeD6[0] > methodTimeD6) {
+					minRunningTimeD6[0] = methodTimeD6;
+				}
+				
+				if(maxRunningTimeD6[0] < methodTimeD6) {
+					maxRunningTimeD6[0] = methodTimeD6;
+				}
+				
+				methodTimeD6 = 0;
+				
+				methodTimeD6 += TestGetY(pointCP2[i]);
+				runningTimeD6[1] += methodTimeD6;
+				
+				if(minRunningTimeD6[1] > methodTimeD6) {
+					minRunningTimeD6[1] = methodTimeD6;
+				}
+				
+				if(maxRunningTimeD6[1] < methodTimeD6) {
+					maxRunningTimeD6[1] = methodTimeD3;
+				}
+				
+				methodTimeD6 = 0;
+				
+				methodTimeD6 += TestGetRho(pointCP2[i]);
+				runningTimeD6[2] += methodTimeD6;
+				
+				if(minRunningTimeD6[2] > methodTimeD6) {
+					minRunningTimeD6[2] = methodTimeD6;
+				}
+				
+				if(maxRunningTimeD6[2] < methodTimeD6) {
+					maxRunningTimeD6[2] = methodTimeD6;
+				}
+				
+				methodTimeD6 = 0;
+				
+				methodTimeD6 += TestGetTheta(pointCP2[i]);
+				runningTimeD6[3] += methodTimeD6;
+				
+				if(minRunningTimeD6[3] > methodTimeD6) {
+					minRunningTimeD6[3] = methodTimeD6;
+				}
+				
+				if(maxRunningTimeD6[3] < methodTimeD6) {
+					maxRunningTimeD6[3] = methodTimeD6;
+				}
+				
+				methodTimeD6 = 0;
+				
+				methodTimeD6 += TestConvertStorageToPolar(pointCP2[i]);
+				runningTimeD6[4] += methodTimeD6;
+				
+				if(minRunningTimeD6[4] > methodTimeD6) {
+					minRunningTimeD6[4] = methodTimeD6;
+				}
+				
+				if(maxRunningTimeD6[4] < methodTimeD6) {
+					maxRunningTimeD6[4] = methodTimeD6;
+				}
+				
+				methodTimeD6 = 0;
+				
+				methodTimeD6 += TestConvertStorageToCartesian(pointCP2[i]);
+				runningTimeD6[5] += methodTimeD6;
+				
+				if(minRunningTimeD6[5] > methodTimeD6) {
+					minRunningTimeD6[5] = methodTimeD6;
+				}
+				
+				if(maxRunningTimeD6[5] < methodTimeD6) {
+					maxRunningTimeD6[5] = methodTimeD6;
+				}
+				
+				methodTimeD6 = 0;
+				
+				if(i == 0) {
+					methodTimeD6 += TestGetDistance(pointCP2[i], PointCPConstruction(2, 'P', Math.random()*((90-0)+1), Math.random()*((90-0)+1)));
+				}
+				else {
+					methodTimeD6 += TestGetDistance(pointCP2[i], pointCP2[i-1]);
+				}
+				runningTimeD6[6] += methodTimeD6;
+				
+				if(minRunningTimeD6[6] > methodTimeD6) {
+					minRunningTimeD6[6] = methodTimeD6;
 				}
 				
 				if(maxRunningTimeD6[6] < methodTimeD6) {
 					maxRunningTimeD6[6] = methodTimeD6;
 				}
 				
-				methodTimeD2 = methodTimeD3 = methodTimeD6 = 0;
-	
-				methodTimeD2 += TestRotatePoint(pointCP2[i], Math.random()*((360-0)+1));
-				methodTimeD3 += TestRotatePoint(pointCP3[i], Math.random()*((360-0)+1));
-				methodTimeD6 += TestRotatePoint(pointCP6[i], Math.random()*((360-0)+1));
-				runningTimeD2[7] += methodTimeD2;
-				runningTimeD3[7] += methodTimeD3;
+				methodTimeD6 = 0;
+				
+				methodTimeD6 += TestRotatePoint(pointCP2[i], Math.random()*((360-0)+1));
 				runningTimeD6[7] += methodTimeD6;
+				
+				if(minRunningTimeD6[7] > methodTimeD6) {
+					minRunningTimeD6[7] = methodTimeD6;
+				}
+				
+				if(maxRunningTimeD6[7] < methodTimeD6) {
+					maxRunningTimeD6[7] = methodTimeD6;
+				}
 			}
-		}
-		long endTime = System.nanoTime();
-		
+		}				
+		endTime = System.nanoTime();
+		System.out.println("Design 6 test running time: " + (double)(endTime-startTime)/1000000000.0);
+
 		for(int i = 0; i < NUMBER_OF_METHODS; i++) {
 			printTestResults(2, runningTimeD2[i], METHODS[i]);
-			printTestResults(3, runningTimeD2[i], METHODS[i]);
-			printTestResults(6, runningTimeD2[i], METHODS[i]);
+			printTestResults(3, runningTimeD3[i], METHODS[i]);
+			printTestResults(6, runningTimeD6[i], METHODS[i]);
 			System.out.println();
 		}
 		System.out.println("Total Running Time: " + (endTime-startTime)/1000000000.0);
